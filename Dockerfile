@@ -9,4 +9,4 @@ FROM openjdk:alpine
 
 COPY --from=BUILDQ /usr/src/myapp/target/*.jar /maven/
 
-CMD java -jar maven/*.jar
+CMD java -agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n -jar maven/*.jar
