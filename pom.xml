@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.activiti.cloud</groupId>
     <artifactId>activiti-cloud-uservices-parent</artifactId>
-    <version>7-201802-EA</version>
+    <version>7-201803-EA-SNAPSHOT</version>
   </parent>
   <groupId>org.activiti.cloud.examples</groupId>
   <artifactId>activiti-cloud-query</artifactId>
@@ -33,6 +33,10 @@
     <dependency>
       <groupId>org.activiti.cloud</groupId>
       <artifactId>activiti-cloud-services-query-graphql-ws</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
