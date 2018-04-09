@@ -2,11 +2,9 @@ package org.activiti.cloud.query;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
 
 import com.netflix.appinfo.ApplicationInfoManager;
-import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -14,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnClass(ApplicationInfoManager.class)
-public class QueryMetaDataAutoConfiguration implements BeanClassLoaderAware {
+public class QueryMetaDataAutoConfiguration {
 
     @Value("${activiti.cloud.application.name:}")
     private String applicationName;
@@ -29,16 +27,12 @@ public class QueryMetaDataAutoConfiguration implements BeanClassLoaderAware {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         Map<String, String> metadata = new HashMap<>();
         metadata.put("activiti-cloud-service-type",
                      "query");
         metadata.put("activiti-cloud-application-name",
                      applicationName);
         appInfoManager.registerAppMetadata(metadata);
-    }
-
-    public void setBeanClassLoader(ClassLoader classLoader) {
-        // Do nothing for now
     }
 }
