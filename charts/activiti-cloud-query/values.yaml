@@ -39,7 +39,7 @@ image:
   tag: dev
   pullPolicy: IfNotPresent
 service:
-#  name: activiti-cloud-query
+  name: query
   type: ClusterIP
   externalPort: 80
   internalPort: 8082
