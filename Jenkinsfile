@@ -49,7 +49,7 @@ pipeline {
               sh "make tag"
             }
 
-            sh 'mvn clean deploy'
+            sh 'mvn clean deploy -DskipTests'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
