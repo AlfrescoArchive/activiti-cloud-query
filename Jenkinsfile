@@ -4,10 +4,10 @@ pipeline {
       ORG               = 'almerico'
       APP_NAME          = 'activiti-cloud-query'
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-
-
       GITHUB_CHARTS_REPO    = "https://github.com/almerico/helmrepo.git"
       GITHUB_HELM_REPO_URL = "https://almerico.github.io/helmrepo"
+
+
     }
     stages {
       stage('CI Build and push snapshot') {
@@ -73,11 +73,8 @@ pipeline {
               sh 'make release'
               // promote through all 'Auto' promotion Environments
               sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION) --no-wait'
-#             sh  'make github'
-              git clone $GITHUB_CHARTS_REPO githelm;
-              ls;
-              pwd;
-              ls charts/
+              sh 'pwd'
+              sh 'ls'
 
           }
         }
