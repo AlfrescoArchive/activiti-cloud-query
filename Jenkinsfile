@@ -52,7 +52,6 @@ pipeline {
             dir ('./charts/activiti-cloud-query') {
               sh "make tag"
             }
-            //input "pause"
 
            //sh 'mvn verify'
            //sh 'mvn clean deploy -DskipTests'
