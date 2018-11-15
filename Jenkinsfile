@@ -55,7 +55,7 @@ pipeline {
 
            //sh 'mvn verify'
            //sh 'mvn clean deploy -DskipTests'
-           sh 'mvn clean deploy -X'
+           sh 'mvn clean deploy'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
@@ -74,8 +74,6 @@ pipeline {
               sh 'make release'
               // promote through all 'Auto' promotion Environments
               sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION) --no-wait'
-              sh 'pwd'
-              sh 'ls'
 
           }
         }
