@@ -56,7 +56,7 @@ pipeline {
 
            //sh 'mvn verify'
            //sh 'mvn clean deploy -DskipTests'
-           sh 'mvn clean deploy'
+           sh 'mvn clean deploy -X'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
