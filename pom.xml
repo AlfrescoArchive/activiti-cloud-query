@@ -126,7 +126,7 @@
                 <version>2.18.1</version>
                 <configuration>
                     <!--<forkCount>0</forkCount>-->
-                    <!--<useSystemClassLoader>false</useSystemClassLoader>-->
+                    <useSystemClassLoader>false</useSystemClassLoader>
                     <!--<argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>-->
                 </configuration>
                 <executions>
