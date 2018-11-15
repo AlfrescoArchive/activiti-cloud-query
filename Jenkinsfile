@@ -53,6 +53,7 @@ pipeline {
               sh "make tag"
             }
 
+           sh 'mvn verify'
            sh 'mvn clean deploy -DskipTests'
  //           sh 'mvn clean deploy'
 
