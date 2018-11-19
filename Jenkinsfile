@@ -61,25 +61,25 @@ pipeline {
 
             sh "jx step post build --image \$DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
 
-            sh "updatebot push-version --kind helm $(APP_NAME) \$(cat VERSION)"
 
         }
       }
 
- //     stage('Promote to Environments') {
- //       when {
- //         branch 'master'
- //       }
- //       steps {
- //         dir ('./charts/activiti-cloud-query') {
- //             sh 'jx step changelog --version v\$(cat ../../VERSION)'
- //             // release the helm chart
- //             sh 'make release'
- //             // promote through all 'Auto' promotion Environments
- //             sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION) --no-wait'
-//
-//          }
-//        }
-//      }
+      stage('Promote to Environments') {
+        when {
+          branch 'master'
+        }
+        steps {
+          dir ('./charts/activiti-cloud-query') {
+              sh 'jx step changelog --version v\$(cat ../../VERSION)'
+              // release the helm chart
+              sh 'make release'
+              // promote through all 'Auto' promotion Environments
+//              sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION) --no-wait'
+//            sh "updatebot push-version --kind helm $(APP_NAME) \$(cat ../../VERSION)"
+
+          }
+        }
+      }
     }
   }
