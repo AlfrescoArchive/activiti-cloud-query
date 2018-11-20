@@ -28,7 +28,6 @@ pipeline {
           sh "jx step validate --min-jx-version 1.2.36"
           sh "jx step post build --image \$DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
 
-
           dir ('./charts/preview') {
 
              sh "make preview"
@@ -52,9 +51,6 @@ pipeline {
             dir ('./charts/activiti-cloud-query') {
               sh "make tag"
             }
-
-           //sh 'mvn verify'
-           //sh 'mvn clean deploy -DskipTests'
            sh 'mvn clean deploy'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
