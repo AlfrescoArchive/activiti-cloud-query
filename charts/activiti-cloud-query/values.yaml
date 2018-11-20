@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: activiti/activiti-cloud-query
-  tag: 7.0.0.Beta3
+  repository: draft
+  tag: dev
   pullPolicy: IfNotPresent
 service:
   name: activiti-cloud-query
