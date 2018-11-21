@@ -51,7 +51,7 @@ pipeline {
             dir ('./charts/activiti-cloud-query') {
               sh "make tag"
             }
-           sh 'mvn clean deploy'
+            sh 'mvn clean deploy'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
 
@@ -71,7 +71,7 @@ pipeline {
               // release the helm chart
               sh 'make release'
               // promote through all 'Auto' promotion Environments
-//              sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION) --no-wait'
+//            sh 'jx promote -b --all-auto --timeout 1h --version \$(cat ../../VERSION) --no-wait'
               sh 'jx step git credentials'
               sh 'cd ../.. && updatebot push-version --kind helm $APP_NAME \$(cat VERSION)'
 
