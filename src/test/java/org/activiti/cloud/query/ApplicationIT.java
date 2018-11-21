@@ -13,7 +13,7 @@ public class ApplicationIT {
 
 	@Test
 	public void contextLoads() throws Exception {
-//		System.out.println("Integration Test");
+		System.out.println("Integration Test");
 	}
 
 }
