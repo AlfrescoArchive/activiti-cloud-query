@@ -6,8 +6,6 @@ pipeline {
       CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
       GITHUB_CHARTS_REPO    = "https://github.com/almerico/helmrepo.git"
       GITHUB_HELM_REPO_URL = "https://almerico.github.io/helmrepo"
-
-
     }
     stages {
       stage('CI Build and push snapshot') {
@@ -20,19 +18,14 @@ pipeline {
           HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
         }
         steps {
-
           sh "mvn versions:set -DnewVersion=$PREVIEW_VERSION"
           sh "mvn install"
           sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
-
           sh "jx step validate --min-jx-version 1.2.36"
           sh "jx step post build --image \$DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
-
           dir ('./charts/preview') {
-
              sh "make preview"
              sh "jx preview --app $APP_NAME --dir ../.."
-
           }
         }
       }
@@ -43,21 +36,15 @@ pipeline {
         steps {
 
             git 'https://github.com/almerico/activiti-cloud-query.git'
-
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
-
             dir ('./charts/activiti-cloud-query') {
               sh "make tag"
             }
             sh 'mvn clean deploy'
-
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
-
             sh "jx step post build --image \$DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
-
-
         }
       }
 
