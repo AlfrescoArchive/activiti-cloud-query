@@ -82,13 +82,15 @@ pipeline {
               sh 'jx step git credentials'
               sh 'cd ../.. && updatebot push-version --kind helm $APP_NAME \$(cat VERSION)'
 
-         }
+            }
+          }
         }
       }
-    }
-    }
+    }  
+    
     post {
         always {
             cleanWs()
         }
-  }
+    }
+}
