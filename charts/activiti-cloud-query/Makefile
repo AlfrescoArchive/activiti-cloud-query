@@ -8,6 +8,7 @@ GITHUB_CHARTS_REPO := $(or $(GITHUB_CHARTS_REPO),$(shell git config --get remote
 GITHUB_CHARTS_BRANCH := $(or $(GITHUB_CHARTS_BRANCH),gh-pages)
 
 build: clean
+    helm init --client-only
 	rm -rf requirements.lock
 	helm dependency build
 	helm lint

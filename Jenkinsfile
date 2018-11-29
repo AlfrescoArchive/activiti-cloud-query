@@ -25,13 +25,12 @@ pipeline {
             sh "mvn install"
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
+//           skip building docker image for now
+   //        sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
 
-            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
-          }
 
-          dir('.charts/activiti-cloud-query') {
-            container('maven') {
-              sh "make build"
+             dir('.charts/activiti-cloud-query') {
+               sh "make build"
              }
           }
         }
@@ -50,17 +49,13 @@ pipeline {
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
-          }
-          dir ('./charts/activiti-cloud-query') {
-            container('maven') {
+
+            dir ('./charts/activiti-cloud-query') {
               sh "make tag"
             }
-          }
-          container('maven') {
             sh 'mvn clean deploy'
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
-
 
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
           }
@@ -71,8 +66,8 @@ pipeline {
           branch 'master'
         }
         steps {
-          dir ('./charts/activiti-cloud-query') {
-            container('maven') {
+          container('maven') {
+            dir ('./charts/activiti-cloud-query') {
               sh 'jx step changelog --version v\$(cat ../../VERSION)'
 
               // release the helm chart
