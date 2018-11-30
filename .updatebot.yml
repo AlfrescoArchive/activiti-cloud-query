@@ -3,3 +3,5 @@ github:
   - name: almerico
     repositories:
     - name: activiti-cloud-application-chart
+      useSinglePullRequest: true
+
