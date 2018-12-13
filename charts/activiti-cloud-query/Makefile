@@ -1,6 +1,7 @@
 #CHART_REPO := http://jenkins-x-chartmuseum:8080
 CURRENT=$(shell pwd)
 NAME := activiti-cloud-query
+ORG := $(or $(ORG),activiti)
 APP_NAME := $(or $(APP_NAME),$(NAME))
 OS := $(shell uname)
 RELEASE_VERSION := $(shell cat ../../VERSION)
