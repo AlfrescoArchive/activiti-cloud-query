@@ -1,3 +1,4 @@
+dependencies:
 - alias: querypostgresql
   name: postgresql
   repository: https://kubernetes-charts.storage.googleapis.com
