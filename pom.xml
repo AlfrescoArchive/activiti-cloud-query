@@ -32,6 +32,13 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.activiti.cloud.query</groupId>
+        <artifactId>activiti-cloud-query-dependencies</artifactId>
+        <version>7.1.0-SNAPSHOT-PR-238-16</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>    
+      <dependency>
         <groupId>org.activiti.cloud.dependencies</groupId>
         <artifactId>activiti-cloud-dependencies</artifactId>
         <version>${activiti-cloud-dependencies.version}</version>
@@ -137,6 +144,12 @@
         <id>activiti-releases</id>
         <name>Activiti Releases</name>
         <url>https://artifacts.alfresco.com/nexus/content/repositories/activiti-releases/</url>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
     </repository>
   </repositories>
 </project>
