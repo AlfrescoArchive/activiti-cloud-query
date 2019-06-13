@@ -32,13 +32,6 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.activiti.cloud.query</groupId>
-        <artifactId>activiti-cloud-query-dependencies</artifactId>
-        <version>7.1.0-SNAPSHOT-PR-238-16</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>    
-      <dependency>
         <groupId>org.activiti.cloud.dependencies</groupId>
         <artifactId>activiti-cloud-dependencies</artifactId>
         <version>${activiti-cloud-dependencies.version}</version>
