@@ -32,8 +32,8 @@ db:
   ddlAuto: "none"
 init:
   image:
-    repository: alpine
-    tag: 3.8
+    repository: docker.io/activiti/activiti-cloud-query
+    tag: 7.1.179
     pullPolicy: IfNotPresent
 postgres:
   enabled: false
@@ -61,8 +61,8 @@ extraEnv: |
 # only set this variable if a private registry secret is needed to pull the image
 #registryPullSecrets: private-registry-secret
 image:
-  repository: activiti/activiti-cloud-query
-  tag: 7.0.0.SR1
+  repository: docker.io/activiti/activiti-cloud-query
+  tag: 7.1.179
   pullPolicy: IfNotPresent
 service:
   type: ClusterIP
