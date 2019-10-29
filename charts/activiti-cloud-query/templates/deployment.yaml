@@ -7,7 +7,7 @@ spec:
       {{- if .Values.postgres.enabled }}
         - name: wait-for-postgresql
           image: {{ .Values.init.container.image | quote }}
-          imagePullPolicy: {{ .Values.init.container.pullPolicy }}
+          imagePullPolicy: {{ .Values.init.container.imagePullPolicy }}
           command:
             - sh
             - -c
