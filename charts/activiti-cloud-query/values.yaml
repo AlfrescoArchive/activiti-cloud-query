@@ -33,7 +33,7 @@ db:
 init:
   container:
     image: alpine:3.8
-    pullPolicy: IfNotPresent
+    imagePullPolicy: IfNotPresent
 postgres:
   enabled: false
   name: postgres
