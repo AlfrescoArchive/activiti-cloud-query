@@ -38,7 +38,7 @@ pipeline {
             // sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$VERSION"
 
             dir("./charts/$APP_NAME") {
-              sh "make prevew"
+              sh "make preview"
             }
           }
         }
