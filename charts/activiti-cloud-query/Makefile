@@ -21,10 +21,10 @@ build: clean
 dry-run: 
 	helm upgrade ${HELM_RELEASE} . --install --debug --dry-run
 
-$(NAME)-$(VERSION).tgz: build
+$(NAME)-$(RELEASE_VERSION).tgz: build
 	helm package .
 
-package: $(NAME)-$(VERSION).tgz
+package: $(NAME)-$(RELEASE_VERSION).tgz
 
 preview: version package dry-run release
 
@@ -43,7 +43,7 @@ clean:
 	rm -rf ${NAME}*.tgz
 
 release: package
-	curl  -u $(CHARTMUSEUM_CREDS_USR):$(CHARTMUSEUM_CREDS_PSW) --data-binary "@$(NAME)-$(VERSION).tgz" $(CHART_REPO)/api/charts
+	curl  -u $(CHARTMUSEUM_CREDS_USR):$(CHARTMUSEUM_CREDS_PSW) --data-binary "@$(NAME)-$(RELEASE_VERSION).tgz" $(CHART_REPO)/api/charts
 	rm -rf ${NAME}*.tgz%
 
 github:
