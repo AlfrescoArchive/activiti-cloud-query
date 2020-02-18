@@ -1,0 +1,28 @@
+{{- template "common.deployment" (list . "activiti.notifications.deployment") -}}
+{{- define "activiti.notifications.deployment" -}}
+spec:
+  template:
+    spec:
+      initContainers:
+      {{- if .Values.rabbitmq.enabled }}
+        - name: wait-for-rabbitmq
+          image: {{ .Values.init.container.image | quote }}
+          imagePullPolicy: {{ .Values.init.container.imagePullPolicy }}
+          env: 
+            - name: RABBITMQ_HOST
+              value: {{ include "activiti.notifications.rabbitmq-name" . | quote }}
+            - name: RABBITMQ_PORT
+              value: {{ include "activiti.notifications.rabbitmq-port" . | quote }}
+          command:
+            - sh
+            - -c
+            - |
+              until printf "." && nc -z -w 2 $RABBITMQ_HOST $RABBITMQ_PORT; do
+                  sleep 2;
+              done;
+              echo 'RabbitMq OK ✓'
+      {{- end }}
+      {{- if .Values.extraInitContainers }}
+{{ tpl .Values.extraInitContainers . | indent 8 }}
+      {{- end }}
+{{- end -}}

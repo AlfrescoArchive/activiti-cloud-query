@@ -1,0 +1,54 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    app: {{ template "fullname" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    {{- include "common.ingress-annotations" . | indent 4 }} 
+spec:
+  rules:
+    {{- if include "common.ingress-host" . }}
+    - host: {{ template "common.ingress-host" . }}
+      http:
+    {{- else }}
+    - http:
+    {{- end }}
+        paths:
+        {{- if .Values.ingress.actuator.enabled }}
+        - path: {{ template "common.ingress-path" . }}{{ tpl .Values.ingress.actuator.path . }}
+          backend:
+            serviceName: {{ template "servicename" . }}
+            servicePort: {{ .Values.service.externalPort }}
+        {{- end }}
+        {{- if .Values.ingress.web.enabled }}
+        - path: {{ template "common.ingress-path" . }}{{ tpl .Values.ingress.web.path . }}
+          backend:
+            serviceName: {{ template "servicename" . }}
+            servicePort: {{ .Values.service.externalPort }}
+        {{- end }}
+        {{- if .Values.ingress.ws.enabled }}
+        - path: {{ template "common.ingress-path" . }}{{ tpl .Values.ingress.ws.path . }}
+          backend:
+            serviceName: {{ template "servicename" . }}
+            servicePort: {{ .Values.service.externalPort }}
+        {{- end }}
+        {{- if .Values.ingress.graphiql.enabled }}
+        - path: {{ template "common.ingress-path" . }}{{ tpl .Values.ingress.graphiql.path . }}
+          backend:
+            serviceName: {{ template "servicename" . }}
+            servicePort: {{ .Values.service.externalPort }}
+        {{- end }}
+  {{- if include "common.ingress-tls" . }}
+  tls:
+  - secretName: {{ template "common.ingress-tlssecretname" . }}
+    {{- if include "common.ingress-host" . }}
+    hosts:
+    - {{ template "common.ingress-host" . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
