@@ -55,7 +55,6 @@ public class ActivitiGraphQLSchemaAutoConfiguration {
 
         @Override
         public void configure(GraphQLShemaRegistration registry) {
-
             GraphQLSchema graphQLSchema = new GraphQLJpaSchemaBuilder(entityManager).name("Query")
                     .description("Activiti Cloud Query Schema").build();
 
