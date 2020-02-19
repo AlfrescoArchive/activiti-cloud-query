@@ -36,13 +36,13 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
-      <!--dependency>
+      <dependency>
         <groupId>org.activiti.cloud.notifications.graphql</groupId>
         <artifactId>activiti-cloud-notifications-graphql-dependencies</artifactId>
         <version>${project.parent.version}</version>
         <scope>import</scope>
         <type>pom</type>
-      </dependency-->
+      </dependency>
       <dependency>
         <groupId>org.activiti.cloud.audit</groupId>
         <artifactId>activiti-cloud-audit-dependencies</artifactId>
@@ -53,10 +53,10 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-    <!--dependency>
+    <dependency>
       <groupId>org.activiti.cloud.notifications.graphql</groupId>
       <artifactId>activiti-cloud-starter-notifications-graphql</artifactId>
-    </dependency-->
+    </dependency>
     <dependency>
       <groupId>org.activiti.cloud.query</groupId>
       <artifactId>activiti-cloud-starter-query</artifactId>
@@ -104,12 +104,12 @@
       <version>${project.version}</version>
       <type>pom</type>
     </dependency>
-    <!--dependency>
+    <dependency>
       <groupId>org.activiti.cloud.notifications.graphql</groupId>
       <artifactId>activiti-cloud-notifications-graphql-dependencies</artifactId>
       <version>${project.version}</version>
       <type>pom</type>
-    </dependency-->
+    </dependency>
     <dependency>
       <groupId>org.activiti.cloud.audit</groupId>
       <artifactId>activiti-cloud-audit-dependencies</artifactId>
