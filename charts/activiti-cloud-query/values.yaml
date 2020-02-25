@@ -133,10 +133,10 @@ ingress:
     path: /notifications/ws/graphql
   query: 
     enabled: true
-    path: /query
+    path: /query/?(.*)
   audit: 
     enabled: true
-    path: /audit
+    path: /audit/?(.*)
 
 
 

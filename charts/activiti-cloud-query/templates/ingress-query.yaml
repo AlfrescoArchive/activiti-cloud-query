@@ -1,3 +1,15 @@
 {{- template "common.ingress" (list . "activiti.query.ingress") -}}
 {{- define "activiti.query.ingress" -}}
+pec:
+  rules:
+    {{- if include "common.ingress-host" . }}
+    - host: {{ template "common.ingress-host" . }}
+      http:
+    {{- else }}
+    - http:
+    {{- end }}
+        paths:
+        {{- if .Values.ingress.query.enabled }}
+        - path: {{ template "common.ingress-path" . }}{{ tpl .Values.ingress.query.path . }}
+        {{- end -}}        
 {{- end -}}
