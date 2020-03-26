@@ -1,0 +1,15 @@
+{{- template "common.ingress" (list . "activiti.audit.ingress") -}}
+{{- define "activiti.audit.ingress" -}}
+pec:
+  rules:
+    {{- if include "common.ingress-host" . }}
+    - host: {{ template "common.ingress-host" . }}
+      http:
+    {{- else }}
+    - http:
+    {{- end }}
+        paths:
+        {{- if .Values.ingress.audit.enabled }}
+        - path: {{ template "common.ingress-path" . }}{{ tpl .Values.ingress.audit.path . }}
+        {{- end -}}        
+{{- end -}}
